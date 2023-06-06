@@ -26,9 +26,7 @@ public class TuitionServiceImpl extends ServiceImpl<Tuition, Long> implements IT
         Stream<List<TuitionDetail>> sListTuitionDetail = repo.findAll().stream().map(listTuition -> listTuition.getDetail());
         Stream<TuitionDetail> sTuitionDetail = sListTuitionDetail.flatMap(listTuitionDetail -> listTuitionDetail.stream());
 
-        Map<String, List<String>> map = sTuitionDetail.collect(Collectors.groupingBy(tuitionDetail -> tuitionDetail.getCurso().getName(),
+        return sTuitionDetail.collect(Collectors.groupingBy(tuitionDetail -> tuitionDetail.getCurso().getName(),
                 Collectors.mapping(tuitionDetail -> tuitionDetail.getTuition().getEstudiante().getNombre(), Collectors.toList())));
-        System.out.println(map);
-        return null;
     }
 }
