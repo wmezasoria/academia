@@ -1,6 +1,9 @@
 package com.meza.academia.config;
 
+import com.meza.academia.dto.CourseDTO;
 import com.meza.academia.dto.StudentDTO;
+import com.meza.academia.dto.TuitionDetailDTO;
+import com.meza.academia.model.Course;
 import com.meza.academia.model.Student;
 import org.modelmapper.ModelMapper;
 import org.modelmapper.TypeMap;
@@ -28,12 +31,14 @@ public class MapperConfig {
 
     @Bean("courseMapper")
     public ModelMapper courseMapper(){
-        return new ModelMapper();
+        ModelMapper mapper = new ModelMapper();
+        TypeMap<Course, CourseDTO> tModelDto = mapper.createTypeMap(Course.class, CourseDTO.class);
+        tModelDto.addMapping(course -> course.getName(), (courseDTO, name) -> courseDTO.setNombre((String)name));
+        return mapper;
     }
 
     @Bean("defaultMapper")
     public ModelMapper defaultMapper(){
         return new ModelMapper();
     }
-
 }

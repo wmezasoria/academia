@@ -19,7 +19,7 @@ import java.util.List;
 public class TuitionDetailController {
 
     private final ITuitionDetailService service;
-    @Qualifier("defaultMapper")
+    @Qualifier("courseMapper")
     private final ModelMapper mapper;
 
     @GetMapping
