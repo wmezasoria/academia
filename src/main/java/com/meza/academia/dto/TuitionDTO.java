@@ -1,5 +1,6 @@
 package com.meza.academia.dto;
 
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.validation.constraints.NotEmpty;
 import jakarta.validation.constraints.NotNull;
 import lombok.AllArgsConstructor;
@@ -20,6 +21,7 @@ public class TuitionDTO {
     private StudentDTO estudiante;
     @NotNull
     @NotEmpty
+    @JsonManagedReference
     private List<TuitionDetailDTO> detail;
     @NotNull
     @NotEmpty
